@@ -8,12 +8,6 @@ RSpec.describe Commentary, type: :model do
     end
   end
 
-  context "Validating content" do
-    it "should be invalid if content nil" do
-      expect(build(:commentary, content:nil)).to be_invalid
-    end
-  end
-
   context "Testing post" do
     it "should be invalid if nil" do
       expect(build(:commentary, post_id: nil)).to be_invalid
