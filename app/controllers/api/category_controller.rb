@@ -24,15 +24,15 @@ class Api::CategoryController < ApplicationController
         category.update!(category_params)
         render json: category, status: :ok
     rescue StandardError => e
-      render json: e, status: :not_found #404 ou :bad_request #400
+        render json: e, status: :not_found #404 ou :bad_request #400
     end
 
     def delete
         category = Category.find(params[:id])
         category.destroy!
         render json: category, status: :ok
-    rescue StandardError
-        head(:bad_request)
+    rescue StandardError => e
+        render json: e, status: :bad_request 
     end
     
     private
