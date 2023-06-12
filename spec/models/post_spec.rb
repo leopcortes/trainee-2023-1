@@ -14,8 +14,8 @@ RSpec.describe Post, type: :model do
     end
 
     it "should be invalid if title is repeated" do
-      create(:post, title:'Piada do nao nem eu')
-      expect(build(:post, title:'Piada do nao nem eu')).to be_invalid
+      create(:post, title:'Post 1')
+      expect(build(:post, title:'Post 1')).to be_invalid
     end
   end
 
