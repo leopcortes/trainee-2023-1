@@ -12,6 +12,11 @@ RSpec.describe Post, type: :model do
       expect(build(:post, title:nil)).to be_invalid
       expect(build(:post, title:'')).to be_invalid
     end
+
+    it "should be invalid if title is repeated" do
+      create(:post, title:'Piada do nao nem eu')
+      expect(build(:post, title:'Piada do nao nem eu')).to be_invalid
+    end
   end
 
   context "Validating content" do
