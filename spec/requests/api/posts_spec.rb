@@ -46,4 +46,17 @@ RSpec.describe "Api::Posts", type: :request do
       end
     end
   end
+
+  describe "PATCH /update/:id" do
+    let(:post) { create(:post, title:'Tutorial subir de elo no lol') }
+    let(:post_params) do
+      attributes_for(:post)
+    end
+    context "when params are ok" do
+      it "return http status created" do
+        patch "/api/posts/update/#{post.id}", params:{post: post_params}
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
 end
