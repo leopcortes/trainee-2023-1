@@ -6,43 +6,43 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     scope 'categories' do
-      post 'create', to: 'category#create'
-      get 'index', to: 'category#index'
-      get 'show/:id', to: 'category#show'
-      patch 'update/:id', to: 'category#update'
-      delete 'delete/:id', to: 'category#delete'
+      post 'create', to: 'categories#create'
+      get 'index', to: 'categories#index'
+      get 'show/:id', to: 'categories#show'
+      patch 'update/:id', to: 'categories#update'
+      delete 'delete/:id', to: 'categories#delete'
     end
     
     scope 'posts' do
-      post 'create', to: 'post#create'
-      get 'index', to: 'post#index'
-      get 'show/:id', to: 'post#show'
-      patch 'update/:id', to: 'post#update'
-      delete 'delete/:id', to: 'post#delete'
+      post 'create', to: 'posts#create'
+      get 'index', to: 'posts#index'
+      get 'show/:id', to: 'posts#show'
+      patch 'update/:id', to: 'posts#update'
+      delete 'delete/:id', to: 'posts#delete'
     end
     
     scope 'feedbacks' do
-      post 'create', to: 'feedback#create'
-      get 'index', to: 'feedback#index'
-      get 'show/:id', to: 'feedback#show'
-      patch 'update/:id', to: 'feedback#update'
-      delete 'delete/:id', to: 'feedback#delete'
+      post 'create', to: 'feedbacks#create'
+      get 'index', to: 'feedbacks#index'
+      get 'show/:id', to: 'feedbacks#show'
+      patch 'update/:id', to: 'feedbacks#update'
+      delete 'delete/:id', to: 'feedbacks#delete'
     end
     
     scope 'commentaries' do
-      post 'create', to: 'commentary#create'
-      get 'index', to: 'commentary#index'
-      get 'show/:id', to: 'commentary#show'
-      patch 'update/:id', to: 'commentary#update'
-      delete 'delete/:id', to: 'commentary#delete'
+      post 'create', to: 'commentaries#create'
+      get 'index', to: 'commentaries#index'
+      get 'show/:id', to: 'commentaries#show'
+      patch 'update/:id', to: 'commentaries#update'
+      delete 'delete/:id', to: 'commentaries#delete'
     end
     
     scope 'post_categories' do
-      post 'create', to: 'post_category#create'
-      get 'index', to: 'post_category#index'
-      get 'show/:id', to: 'post_category#show'
-      patch 'update/:id', to: 'post_category#update'
-      delete 'delete/:id', to: 'post_category#delete'
+      post 'create', to: 'post_categories#create'
+      get 'index', to: 'post_categories#index'
+      get 'show/:id', to: 'post_categories#show'
+      patch 'update/:id', to: 'post_categories#update'
+      delete 'delete/:id', to: 'post_categories#delete'
     end
   end
 end
