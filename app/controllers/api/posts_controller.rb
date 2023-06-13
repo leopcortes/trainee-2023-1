@@ -22,6 +22,14 @@ class Api::PostsController < ApplicationController
         render json: e, status: :not_found #404 ou :bad_request #400
     end
 
+    def delete
+        post = Post.find(params[:id])
+        post.destroy!
+        render json: post, status: :ok
+    rescue StandardError => e
+        render json: e, status: :bad_request 
+    end
+
     private
 
     def post_params
