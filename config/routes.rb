@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace 'api' do
-    scope 'category' do
+    scope 'categories' do
       post 'create', to: 'category#create'
       get 'index', to: 'category#index'
       get 'show/:id', to: 'category#show'
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       delete 'delete/:id', to: 'category#delete'
     end
     
-    scope 'post' do
+    scope 'posts' do
       post 'create', to: 'post#create'
       get 'index', to: 'post#index'
       get 'show/:id', to: 'post#show'
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       delete 'delete/:id', to: 'post#delete'
     end
     
-    scope 'feedback' do
+    scope 'feedbacks' do
       post 'create', to: 'feedback#create'
       get 'index', to: 'feedback#index'
       get 'show/:id', to: 'feedback#show'
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       delete 'delete/:id', to: 'feedback#delete'
     end
     
-    scope 'commentary' do
+    scope 'commentaries' do
       post 'create', to: 'commentary#create'
       get 'index', to: 'commentary#index'
       get 'show/:id', to: 'commentary#show'
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       delete 'delete/:id', to: 'commentary#delete'
     end
     
-    scope 'post_category' do
+    scope 'post_categories' do
       post 'create', to: 'post_category#create'
       get 'index', to: 'post_category#index'
       get 'show/:id', to: 'post_category#show'
