@@ -59,4 +59,20 @@ RSpec.describe "Api::Posts", type: :request do
       end
     end
   end
+
+  describe " DELETE /delete/:id" do
+    let(:post) {create(:post)}
+    context 'post exist' do
+      it 'return https status ok' do
+        delete "/api/posts/delete/#{post.id}"
+        expect(response).to have_http_status(:ok)
+      end
+    end
+    context 'post does not exist' do
+      it 'return https status bad_request' do
+        delete "/api/posts/delete/-1"
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+  end
 end
