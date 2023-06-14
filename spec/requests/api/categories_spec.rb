@@ -27,6 +27,37 @@ RSpec.describe "Api::Categories", type: :request do
 		end
 	end
 
+    describe "GET /index" do
+        before do
+            create(:category, id:1, name:"Jogos", description:"Valorant/LOL/COD/Fortnite/Minecraft/etc")
+            create(:category, id:2, name:"TV", description:"Filmes/Series/Animes/Streamings/etc")
+        end
+        context 'when index return' do
+            before do
+                get '/api/categories/index'
+            end
+            it 'return http status ok' do
+                expect(response).to have_http_status(:ok)
+            end
+            it 'return a json' do
+                expect(response.content_type).to eq('application/json; charset=utf-8')
+            end
+            it 'return created instances' do
+                expect(JSON.parse(response.body)).to eq([{
+                    'id' => 1,
+                    'name' => "Jogos",
+                    'description' => "Valorant/LOL/COD/Fortnite/Minecraft/etc"
+                },
+                {
+                    'id' => 2,
+                    'name' => "TV",
+                    'description' => "Filmes/Series/Animes/Streamings/etc"
+                }
+                ])
+            end
+        end
+    end
+
     describe "GET /show/:id" do
         let(:category) {create(:category)}
         context "when id exist" do
