@@ -7,6 +7,11 @@ class Api::CategoriesController < ApplicationController
       render json: e, status: :bad_request 
     end
 
+    def index
+        category = Category.all
+        render json: category, :except => [:created_at, :updated_at], status: :ok
+    end
+
     def show
         category = Category.find(params[:id])
         render json: category, status: :ok
