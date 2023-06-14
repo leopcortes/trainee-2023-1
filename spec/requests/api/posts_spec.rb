@@ -27,6 +27,37 @@ RSpec.describe "Api::Posts", type: :request do
 		end
 	end
 
+  describe "GET /index" do
+    before do
+      create(:post, id: 1, title: "Tutorial como subir de elo no lol", content: "Desista")
+      create(:post, id: 2, title: "Aonde assistir homem aranha online", content: "TV Box")
+    end
+    context 'when index return' do
+      before do
+        get '/api/posts/index'
+      end
+      it 'return http status ok' do
+        expect(response).to have_http_status(:ok)
+      end
+      it 'return a json' do
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+      it 'return created instances' do
+        expect(JSON.parse(response.body)).to eq([{
+          'id' => 1,
+          'title' => "Tutorial como subir de elo no lol",
+          'content' => "Desista"
+        },
+        {
+          'id' => 2,
+          'title' => "Aonde assistir homem aranha online",
+          'content' => "TV Box"
+        }
+        ])
+      end
+    end
+  end
+
   describe "GET /show/:id" do
     let(:post) {create(:post)}
     context "when id exist" do
