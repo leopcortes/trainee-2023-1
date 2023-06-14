@@ -7,6 +7,13 @@ class Api::CategoriesController < ApplicationController
       render json: e, status: :bad_request 
     end
 
+    def show
+        category = Category.find(params[:id])
+        render json: category, status: :ok
+    rescue StandardError => e
+        render json: e, status: :not_found
+    end
+
     private
 
     def category_params
