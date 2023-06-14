@@ -30,20 +30,33 @@ RSpec.describe "Api::Categories", type: :request do
     describe "GET /show/:id" do
         let(:category) {create(:category)}
         context "when id exist" do
-          before do
-            get "/api/categories/show/#{category.id}"
-          end
-          it "return http status ok" do
-            expect(response).to have_http_status(:ok)
-          end
+            before do
+                get "/api/categories/show/#{category.id}"
+            end
+            it "return http status ok" do
+                expect(response).to have_http_status(:ok)
+            end
         end
         context "when id not found" do
-          before do
-            get "/api/categories/show/-1"
-          end
-          it "return http status not_found" do
-            expect(response).to have_http_status(:not_found)
-          end
+            before do
+                get "/api/categories/show/-1"
+            end
+            it "return http status not_found" do
+                expect(response).to have_http_status(:not_found)
+            end
         end
-      end
+    end
+
+    describe "PATCH /update/:id" do
+        let(:category) { create(:category, name:'Jogos') }
+        let(:category_params) do
+          attributes_for(:category)
+        end
+        context "when params are ok" do
+            it "return http status created" do
+                patch "/api/categories/update/#{category.id}", params:{category: category_params}
+                expect(response).to have_http_status(:ok)
+            end
+        end
+    end
 end
