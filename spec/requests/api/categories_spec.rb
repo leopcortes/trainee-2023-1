@@ -26,4 +26,24 @@ RSpec.describe "Api::Categories", type: :request do
 			end
 		end
 	end
+
+    describe "GET /show/:id" do
+        let(:category) {create(:category)}
+        context "when id exist" do
+          before do
+            get "/api/categories/show/#{category.id}"
+          end
+          it "return http status ok" do
+            expect(response).to have_http_status(:ok)
+          end
+        end
+        context "when id not found" do
+          before do
+            get "/api/categories/show/-1"
+          end
+          it "return http status not_found" do
+            expect(response).to have_http_status(:not_found)
+          end
+        end
+      end
 end
