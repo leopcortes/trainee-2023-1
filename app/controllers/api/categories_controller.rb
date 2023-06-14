@@ -14,6 +14,14 @@ class Api::CategoriesController < ApplicationController
         render json: e, status: :not_found
     end
 
+    def update 
+        category = Category.find(params[:id])
+        category.update!(category_params)
+        render json: category, status: :ok
+    rescue StandardError => e
+        render json: e, status: :not_found #404 ou :bad_request #400
+    end
+
     private
 
     def category_params
