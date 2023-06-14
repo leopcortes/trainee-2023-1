@@ -7,6 +7,11 @@ class Api::PostsController < ApplicationController
       render json: e, status: :bad_request 
     end
 
+    def index
+        post = Post.all
+        render json: post, :except => [:created_at, :updated_at], status: :ok
+    end
+
     def show
         post = Post.find(params[:id])
         render json: post, status: :ok
