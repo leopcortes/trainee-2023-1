@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :feedback do
     like { false }
-    post { nil }
+    post { association(:post) }
   end
 end
