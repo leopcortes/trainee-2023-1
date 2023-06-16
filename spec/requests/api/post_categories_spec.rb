@@ -99,4 +99,20 @@ RSpec.describe "Api::PostCategories", type: :request do
 			end
 		end
 	end
+
+    describe "DELETE /delete/:id" do
+		let(:post_category) {create(:post_category)}
+		context 'post_category exist' do
+			it 'return https status ok' do
+				delete "/api/post_categories/delete/#{post_category.id}"
+				expect(response).to have_http_status(:ok)
+			end
+		end
+		context 'post_category does not exist' do
+			it 'return https status bad_request' do
+				delete "/api/post_categories/delete/-1"
+				expect(response).to have_http_status(:bad_request)
+			end
+		end
+	end
 end

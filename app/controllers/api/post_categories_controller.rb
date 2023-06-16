@@ -27,6 +27,14 @@ class Api::PostCategoriesController < ApplicationController
         render json: e, status: :not_found #404 ou :bad_request #400
     end
 
+    def delete
+        post_category = PostCategory.find(params[:id])
+        post_category.destroy!
+        render json: post_category, status: :ok
+    rescue StandardError => e
+        render json: e, status: :bad_request 
+    end
+
     private
 
     def post_category_params
