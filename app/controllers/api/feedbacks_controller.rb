@@ -21,6 +21,14 @@ class Api::FeedbacksController < ApplicationController
     rescue StandardError => e
         render json: e, status: :not_found #404 ou :bad_request #400
     end
+
+    def delete
+        feedback = Feedback.find(params[:id])
+        feedback.destroy!
+        render json: feedback, status: :ok
+    rescue StandardError => e
+        render json: e, status: :bad_request 
+    end
     
     private
 
