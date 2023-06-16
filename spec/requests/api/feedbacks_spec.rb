@@ -30,4 +30,24 @@ RSpec.describe "Api::Feedbacks", type: :request do
 			end
 		end
 	end
+
+	describe "GET /show/:id" do
+		let(:feedback) {create(:feedback)}
+		context "when id exist" do
+		  before do
+			get "/api/feedbacks/show/#{feedback.id}"
+		  end
+		  it "return http status ok" do
+			expect(response).to have_http_status(:ok)
+		  end
+		end
+		context "when id not found" do
+		  before do
+			get "/api/feedbacks/show/-1"
+		  end
+		  it "return http status not_found" do
+			expect(response).to have_http_status(:not_found)
+		  end
+		end
+	  end
 end
