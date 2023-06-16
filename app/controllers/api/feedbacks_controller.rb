@@ -7,6 +7,11 @@ class Api::FeedbacksController < ApplicationController
         render e, status: :bad_request 
     end
 
+    def index
+        feedback = Feedback.all
+        render json: feedback, :except => [:created_at, :updated_at], status: :ok
+    end
+
     def show
         feedback = Feedback.find(params[:id])
         render json: feedback, status: :ok
