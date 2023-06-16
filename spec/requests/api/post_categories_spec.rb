@@ -86,4 +86,17 @@ RSpec.describe "Api::PostCategories", type: :request do
 			end
 		end
 	end
+
+    describe "PATCH /update/:id" do
+		let(:post_category) { create(:post_category) }
+		let(:post_category_params) do
+		  	attributes_for(:post_category)
+		end
+		context "when params are ok" do
+			it "return http status ok" do
+				patch "/api/post_categories/update/#{post_category.id}", params:{post_category: post_category_params }
+				expect(response).to have_http_status(:ok)
+			end
+		end
+	end
 end
