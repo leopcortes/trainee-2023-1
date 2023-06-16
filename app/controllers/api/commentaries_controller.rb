@@ -7,6 +7,11 @@ class Api::CommentariesController < ApplicationController
         render e, status: :bad_request 
     end
 
+    def index
+        commentary = Commentary.all
+        render json: commentary, :except => [:created_at, :updated_at], status: :ok
+    end
+
     def show
         commentary = Commentary.find(params[:id])
         render json: commentary, status: :ok

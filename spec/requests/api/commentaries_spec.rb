@@ -31,6 +31,46 @@ RSpec.describe "Api::Commentaries", type: :request do
 		end
 	end
 
+    describe "GET /index" do
+		before do 
+			create(:post, id: 1, title: "Postagem1", content: "aaaaa")
+			create(:post, id: 2, title: "Postagem2", content: "bbbbb")
+			create(:post, id: 3, title: "Postagem3", content: "ccccc")
+			create(:commentary, id: 1, content:"legal", post_id:1)
+			create(:commentary, id: 2, content:"maneiro", post_id:2)
+			create(:commentary, id: 3, content:"massa", post_id:3)
+		end
+		context 'when index return' do
+			before do
+				get '/api/commentaries/index'
+			end
+			it 'return http status ok' do
+				expect(response).to have_http_status(:ok)
+			end
+			it 'return a json' do
+				expect(response.content_type).to eq('application/json; charset=utf-8')
+			end
+			it 'return created instances' do
+				expect(JSON.parse(response.body)).to eq([{
+				'id' => 1,
+				'content' => "legal",
+				'post_id' => 1
+				},
+				{
+				'id' => 2,
+				'content' => "maneiro",
+				'post_id' => 2
+				},
+				{
+				'id' => 3,
+				'content' => "massa",
+				'post_id' => 3
+				}
+				])
+			end
+		end
+	end
+
     describe "GET /show/:id" do
 		let(:commentary) {create(:commentary)}
 		context "when id exist" do
