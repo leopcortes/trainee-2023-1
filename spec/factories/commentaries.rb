@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :commentary do
     content { "MyText" }
-    post { nil }
+    post { association(:post) }
   end
 end
