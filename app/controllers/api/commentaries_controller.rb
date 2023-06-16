@@ -7,6 +7,13 @@ class Api::CommentariesController < ApplicationController
         render e, status: :bad_request 
     end
 
+    def show
+        commentary = Commentary.find(params[:id])
+        render json: commentary, status: :ok
+    rescue StandardError => e
+        render json: e, status: :not_found
+    end
+
     private
 
     def commentary_params
