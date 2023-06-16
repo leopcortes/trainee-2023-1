@@ -7,6 +7,11 @@ class Api::PostCategoriesController < ApplicationController
         render e, status: :bad_request 
     end
 
+    def index
+        post_category = PostCategory.all
+        render json: post_category, :except => [:created_at, :updated_at], status: :ok
+    end
+
     private
 
     def post_category_params

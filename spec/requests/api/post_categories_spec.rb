@@ -31,4 +31,39 @@ RSpec.describe "Api::PostCategories", type: :request do
 			end
 		end
 	end
+
+    describe "GET /index" do
+		before do 
+			create(:post, id: 1, title: "Postagem1", content: "aaaaa")
+			create(:post, id: 2, title: "Postagem2", content: "bbbbb")
+			create(:category, id: 1, name: "Categoria1", description: "zzzzz")
+			create(:category, id: 2, name: "Categoria2", description: "xxxxx")
+			create(:post_category, id: 1, post_id:1, category_id:1)
+			create(:post_category, id: 2, post_id:2, category_id:2)
+		end
+		context 'when index return' do
+			before do
+				get '/api/post_categories/index'
+			end
+			it 'return http status ok' do
+				expect(response).to have_http_status(:ok)
+			end
+			it 'return a json' do
+				expect(response.content_type).to eq('application/json; charset=utf-8')
+			end
+			it 'return created instances' do
+				expect(JSON.parse(response.body)).to eq([{
+				'id' => 1,
+				'post_id' => 1,
+				'category_id' => 1
+				},
+				{
+				'id' => 2,
+				'post_id' => 2,
+				'category_id' => 2
+				}
+				])
+			end
+		end
+	end
 end
