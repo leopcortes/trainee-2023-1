@@ -22,6 +22,14 @@ class Api::CommentariesController < ApplicationController
         render json: e, status: :not_found #404 ou :bad_request #400
     end
 
+    def delete
+        commentary = Commentary.find(params[:id])
+        commentary.destroy!
+        render json: commentary, status: :ok
+    rescue StandardError => e
+        render json: e, status: :bad_request 
+    end
+
     private
 
     def commentary_params

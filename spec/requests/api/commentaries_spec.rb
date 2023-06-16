@@ -63,4 +63,20 @@ RSpec.describe "Api::Commentaries", type: :request do
 			end
 		end
 	end
+
+    describe "DELETE /delete/:id" do
+		let(:commentary) {create(:commentary)}
+		context 'commentary exist' do
+			it 'return https status ok' do
+				delete "/api/commentaries/delete/#{commentary.id}"
+				expect(response).to have_http_status(:ok)
+			end
+		end
+		context 'commentary does not exist' do
+			it 'return https status bad_request' do
+				delete "/api/commentaries/delete/-1"
+				expect(response).to have_http_status(:bad_request)
+			end
+		end
+	end
 end
