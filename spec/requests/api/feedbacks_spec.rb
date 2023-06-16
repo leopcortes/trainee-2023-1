@@ -63,4 +63,20 @@ RSpec.describe "Api::Feedbacks", type: :request do
 			end
 		end
 	end
+
+	describe " DELETE /delete/:id" do
+		let(:feedback) {create(:feedback)}
+		context 'feedback exist' do
+			it 'return https status ok' do
+				delete "/api/feedbacks/delete/#{feedback.id}"
+				expect(response).to have_http_status(:ok)
+			end
+		end
+		context 'feedback does not exist' do
+			it 'return https status bad_request' do
+				delete "/api/feedbacks/delete/-1"
+				expect(response).to have_http_status(:bad_request)
+			end
+		end
+	end
 end
