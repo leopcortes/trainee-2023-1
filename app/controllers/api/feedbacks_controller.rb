@@ -3,8 +3,8 @@ class Api::FeedbacksController < ApplicationController
         feedback = Feedback.new(feedback_params)
         feedback.save!
         render json: feedback, status: :created
-    rescue StandardError
-        head(:bad_request)
+    rescue StandardError => e
+        render e, status: :bad_request 
     end
     
     private

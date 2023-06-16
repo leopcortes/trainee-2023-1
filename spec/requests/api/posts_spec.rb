@@ -28,9 +28,10 @@ RSpec.describe "Api::Posts", type: :request do
 	end
 
   describe "GET /index" do
-    before do
-      create(:post, id: 1, title: "Tutorial como subir de elo no lol", content: "Desista")
-      create(:post, id: 2, title: "Aonde assistir homem aranha online", content: "TV Box")
+    before do 
+      create(:post, id: 1, title: "Postagem1", content: "aaaaa")
+      create(:post, id: 2, title: "Postagem2", content: "bbbbb")
+      create(:post, id: 3, title: "Postagem3", content: "ccccc")
     end
     context 'when index return' do
       before do
@@ -45,13 +46,18 @@ RSpec.describe "Api::Posts", type: :request do
       it 'return created instances' do
         expect(JSON.parse(response.body)).to eq([{
           'id' => 1,
-          'title' => "Tutorial como subir de elo no lol",
-          'content' => "Desista"
+          'title' => "Postagem1",
+          'content' => "aaaaa"
         },
         {
           'id' => 2,
-          'title' => "Aonde assistir homem aranha online",
-          'content' => "TV Box"
+          'title' => "Postagem2",
+          'content' => "bbbbb"
+        },
+        {
+          'id' => 3,
+          'title' => "Postagem3",
+          'content' => "ccccc"
         }
         ])
       end

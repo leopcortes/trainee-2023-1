@@ -4,7 +4,7 @@ class Api::PostsController < ApplicationController
         post.save!
         render json: post, status: :created #201
     rescue StandardError => e
-      render json: e, status: :bad_request 
+        render json: e, status: :bad_request 
     end
 
     def index
