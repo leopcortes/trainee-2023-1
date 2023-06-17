@@ -8,7 +8,7 @@ RSpec.describe Feedback, type: :model do
     end
   end
 
-  context "Testing post" do
+  context "Validating post" do
     it "should be invalid if nil" do
       expect(build(:feedback, post_id: nil)).to be_invalid
     end
