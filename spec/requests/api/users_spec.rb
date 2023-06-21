@@ -29,8 +29,8 @@ RSpec.describe "Api::Users", type: :request do
 
   describe "GET /index" do
     before do
-      create(:user, name:"Joao", email:"joao@gmail.com", is_admin:true)
-      create(:user, name:"Maria", email:"maria@gmail.com", is_admin:true)
+      create(:user, id:1, name:"Joao", email:"joao@gmail.com", is_admin:true)
+      create(:user, id:2, name:"Maria", email:"maria@gmail.com", is_admin:true)
     end
     context 'when index return' do
       before do
