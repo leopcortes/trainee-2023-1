@@ -1,9 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
+  # context "Testing factory" do
+  #   it "should be valid" do
+  #     expect(build(:post)).to be_valid
+  #   end
+  # end
+
+  let(:user) { create(:user, id:10, name:"aaa", email:"a@gmail.com", password:"123456", is_admin:true) }
   context "Testing factory" do
     it "should be valid" do
-      expect(build(:post)).to be_valid
+      expect(build(:post, user_id:user.id)).to be_valid
     end
   end
 
@@ -14,8 +21,9 @@ RSpec.describe Post, type: :model do
     end
 
     it "should be invalid if title is repeated" do
-      create(:post, title:'Post 1')
-      expect(build(:post, title:'Post 1')).to be_invalid
+      create(:user, id:10, name:"aaa", email:"a@gmail.com", password:"123456", is_admin:true)
+      create(:post, user_id:10, title:'Post 1')
+      expect(build(:post, user_id:10, title:'Post 1')).to be_invalid
     end
   end
 

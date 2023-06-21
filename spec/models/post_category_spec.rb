@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe PostCategory, type: :model do
+  let(:user) { create(:user, id:10, name:"aaa", email:"a@gmail.com", password:"123456", is_admin:true) }
   let(:category) { create(:category) }
-  let(:post) { create(:post) }
+  let(:post) { create(:post, user_id:user.id) }
 
   context "Testing factory" do
     it "should be valid" do
-      expect(build(:post_category, category_id: category.id, post_id: post.id)).to be_valid
+      expect(build(:commentary, post_id: post.id, user_id:user.id)).to be_valid
     end
   end
 
