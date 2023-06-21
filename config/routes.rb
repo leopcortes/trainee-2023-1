@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'show/:id', to: 'users#show'
       patch 'update/:id', to: 'users#update'
       delete 'delete/:id', to: 'users#delete'
+      get 'login', to: 'users#login'
     end
     
     scope 'categories' do
