@@ -1,4 +1,8 @@
 class Api::UsersController < ApplicationController
+
+    acts_as_token_authentication_handler_for User, only: [:index, :show, :update, :delete]
+    before_action :admin_authentication, only: [:index]
+
     def create
         user = User.new(user_params)
         user.save!
