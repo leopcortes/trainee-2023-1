@@ -6,6 +6,14 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace 'api' do
+    scope 'users' do
+      post 'create', to: 'users#create'
+      get 'index', to: 'users#index'
+      get 'show/:id', to: 'users#show'
+      patch 'update/:id', to: 'users#update'
+      delete 'delete/:id', to: 'users#delete'
+    end
+    
     scope 'categories' do
       post 'create', to: 'categories#create'
       get 'index', to: 'categories#index'
