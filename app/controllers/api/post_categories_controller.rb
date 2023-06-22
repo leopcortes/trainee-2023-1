@@ -1,8 +1,4 @@
 class Api::PostCategoriesController < ApplicationController
-
-    acts_as_token_authentication_handler_for User, only: [:create, :update, :delete]
-    before_action :admin_authentication, only: [:create, :update, :delete]
-
     def create
         post_category = PostCategory.new(post_category_params)
         post_category.save!
