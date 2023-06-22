@@ -42,6 +42,6 @@ class Api::CommentariesController < ApplicationController
     private
 
     def commentary_params
-        params.require(:commentary).permit(:content, :post_id)
+        params.require(:commentary).permit(:content, :post_id, :user_id)
     end
 end
