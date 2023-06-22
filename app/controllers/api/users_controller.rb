@@ -13,7 +13,7 @@ class Api::UsersController < ApplicationController
 
     def index
         user = User.all
-        render json: user, :except => [:authentication_token, :created_at, :updated_at], status: :ok
+        render json: user, :except => [:created_at, :updated_at], status: :ok
     end
 
     def show
