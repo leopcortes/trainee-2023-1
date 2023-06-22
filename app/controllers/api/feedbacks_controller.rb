@@ -42,6 +42,6 @@ class Api::FeedbacksController < ApplicationController
     private
 
     def feedback_params
-        params.require(:feedback).permit(:like, :post_id)
+        params.require(:feedback).permit(:like, :post_id, :user_id)
     end
 end
