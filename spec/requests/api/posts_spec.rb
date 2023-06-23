@@ -63,21 +63,30 @@ RSpec.describe "Api::Posts", type: :request do
 			it 'return created instances' do
 				expect(JSON.parse(response.body)).to eq([{
 					'id' => 1,
-					'user_id' => 1,
+					'user' => {
+						"email" => "aaa@gmail.com"
+					},
 					'title' => "Postagem1",
-					'content' => "aaaaa"
+					'content' => "aaaaa",
+					'images_url' => []
 				},
 				{
 					'id' => 2,
-					'user_id' => 1,
+					'user' => {
+						"email" => "aaa@gmail.com"
+					},
 					'title' => "Postagem2",
-					'content' => "bbbbb"
+					'content' => "bbbbb",
+					'images_url' => []
 				},
 				{
 					'id' => 3,
-					'user_id' => 1,
+					'user' => {
+						"email" => "aaa@gmail.com"
+					},
 					'title' => "Postagem3",
-					'content' => "ccccc"
+					'content' => "ccccc",
+					'images_url' => []
 				}
 				])
 			end
@@ -85,7 +94,13 @@ RSpec.describe "Api::Posts", type: :request do
 	end
 
 	describe "GET /show/:id" do
-		let(:post) {create(:post)}
+		before do
+			create(:user, id:5, email:"ddd@gmail.com", is_admin:true)
+		end
+		let(:post) { create(:post, user_id:5) }
+		let(:post_params) { 
+			attributes_for(:post)
+		}
 		context "when id exist" do
 			before do
 				get "/api/posts/show/#{post.id}"

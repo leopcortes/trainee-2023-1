@@ -58,13 +58,29 @@ RSpec.describe "Api::PostCategories", type: :request do
 			it 'return created instances' do
 				expect(JSON.parse(response.body)).to eq([{
 				'id' => 1,
-				'post_id' => 1,
-				'category_id' => 1
+				'post' => {
+					"id" => 1,
+					"title" => "Postagem1",
+					"content" => "aaaaa"
+				},
+				'category' => {
+					"id" => 1,
+					"name" => "Categoria1", 
+					"description" => "zzzzz"
+				}
 				},
 				{
 				'id' => 2,
-				'post_id' => 2,
-				'category_id' => 2
+				'post' => {
+					"id" => 2,
+					"title" => "Postagem2",
+					"content" => "bbbbb"
+				},
+				'category' => {
+					"id" => 2,
+					"name" => "Categoria2", 
+					"description" => "xxxxx"
+				}
 				}
 				])
 			end

@@ -70,20 +70,38 @@ RSpec.describe "Api::Commentaries", type: :request do
 				expect(JSON.parse(response.body)).to eq([{
 				'id' => 1,
 				'content' => "legal",
-				'post_id' => 1,
-				'user_id' => 100
+				'post' => {
+					"id" => 1,
+					"title" => "Postagem1",
+					"content" => "aaaaa"
+				},
+				'user' => {
+					"email" => "ana@gmail.com"
+				}
 				},
 				{
 				'id' => 2,
 				'content' => "maneiro",
-				'post_id' => 2,
-				'user_id' => 100
+				'post' => {
+					"id" => 2,
+					"title" => "Postagem2",
+					"content" => "bbbbb"
+				},
+				'user' => {
+					"email" => "ana@gmail.com"
+				}
 				},
 				{
 				'id' => 3,
 				'content' => "massa",
-				'post_id' => 3,
-				'user_id' => 100
+				'post' => {
+					"id" => 3,
+					"title" => "Postagem3",
+					"content" => "ccccc"
+				},
+				'user' => {
+					"email" => "ana@gmail.com"
+				}
 				}
 				])
 			end

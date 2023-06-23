@@ -54,10 +54,11 @@ RSpec.describe "Api::Users", type: :request do
 			end
 			it 'return created instances' do
 				expect(JSON.parse(response.body).first).to include(
+					'id',
 					'name',
 					'email',
-					'authentication_token',
-					'is_admin'
+					'is_admin',
+					'profile_picture_url'
 				)
 			end
 		end
