@@ -9,12 +9,12 @@ class Api::CategoriesController < ApplicationController
 
     def index
         category = Category.all
-        render json: category, :except => [:created_at, :updated_at], status: :ok
+        render json: array_serializer(category), :except => [:created_at, :updated_at], status: :ok
     end
 
     def show
         category = Category.find(params[:id])
-        render json: category, status: :ok
+        render json: serializer(category), status: :ok
     rescue StandardError => e
         render json: e, status: :not_found
     end
@@ -36,6 +36,14 @@ class Api::CategoriesController < ApplicationController
     end
 
     private
+
+    def array_serializer(categories)
+        Panko::ArraySerializer.new(categories, each_serializer: CategorySerializer).to_json
+    end
+
+    def serializer(category)
+        CategorySerializer.new.serialize_to_json(category)
+    end
 
     def category_params
         params.require(:category).permit(:name, :description)
