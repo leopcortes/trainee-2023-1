@@ -13,12 +13,12 @@ class Api::FeedbacksController < ApplicationController
 
     def index
         feedback = Feedback.all
-        render json: feedback, :except => [:created_at, :updated_at], status: :ok
+        render json: array_serializer(feedback), :except => [:created_at, :updated_at], status: :ok
     end
 
     def show
         feedback = Feedback.find(params[:id])
-        render json: feedback, status: :ok
+        render json: serializer(feedback), status: :ok
     rescue StandardError => e
         render json: e, status: :not_found
     end
@@ -40,6 +40,14 @@ class Api::FeedbacksController < ApplicationController
     end
     
     private
+
+    def array_serializer(feedbacks)
+        Panko::ArraySerializer.new(feedbacks, each_serializer: FeedbackSerializer).to_json
+    end
+
+    def serializer(feedback)
+        FeedbackSerializer.new.serialize_to_json(feedback)
+    end
 
     def feedback_params
         params.require(:feedback).permit(:like, :post_id, :user_id)
