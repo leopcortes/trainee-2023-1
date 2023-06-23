@@ -18,6 +18,13 @@ Post.create(id:1, title: "Tutorial como subir de elo no lol", content: "Desista"
 Post.create(id:2, title: "Aonde assistir homem aranha online", content: "TV Box", user_id: 2)
 Post.create(id:3, title: "O que e um pontinho azul no ceu", content: "Urublue", user_id: 3)
 
+Post.find_by(id:1).images.attach(io: File.open('./public/elos-lol.jpg'), filename:('elos-lol.jpg'))
+Post.find_by(id:1).images.attach(io: File.open('./public/bronze-lol.jpg'), filename:('bronze-lol.jpg'))
+Post.find_by(id:2).images.attach(io: File.open('./public/miranha.jpg'), filename:('miranha.jpg'))
+Post.find_by(id:2).images.attach(io: File.open('./public/miranhas.jpg'), filename:('miranhas.jpg'))
+Post.find_by(id:3).images.attach(io: File.open('./public/urubu.jpg'), filename:('urubu.jpg'))
+Post.find_by(id:3).images.attach(io: File.open('./public/urublue.jpg'), filename:('urublue.jpg'))
+
 Category.create(id:1, name: "Jogos", description: "Valorant/LOL/COD/Fortnite/Minecraft/etc")
 Category.create(id:2, name: "TV", description: "Filmes/Series/Animes/Streamings/etc")
 Category.create(id:3, name: "Memes", description: "Piadas/Humor/Risos")
