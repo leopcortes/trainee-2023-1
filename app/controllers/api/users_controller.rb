@@ -13,12 +13,12 @@ class Api::UsersController < ApplicationController
 
     def index
         user = User.all
-        render json: user, :except => [:created_at, :updated_at], status: :ok
+        render json: array_serializer(user), :except => [:created_at, :updated_at], status: :ok
     end
 
     def show
         user = User.find(params[:id])
-        render json: user, status: :ok
+        render json: serializer(user), status: :ok
     rescue StandardError => e
         render json: e, status: :not_found
     end
@@ -51,6 +51,14 @@ class Api::UsersController < ApplicationController
     end
 
     private
+
+    def array_serializer(users)
+        Panko::ArraySerializer.new(users, each_serializer: UserSerializer).to_json
+    end
+
+    def serializer(user)
+        UserSerializer.new.serialize_to_json(user)
+    end
 
     def user_params
         params.require(:user).permit(:name, :email, :is_admin, :password)
