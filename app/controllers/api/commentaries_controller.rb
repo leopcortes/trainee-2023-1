@@ -13,12 +13,12 @@ class Api::CommentariesController < ApplicationController
 
     def index
         commentary = Commentary.all
-        render json: commentary, :except => [:created_at, :updated_at], status: :ok
+        render json: array_serializer(commentary), :except => [:created_at, :updated_at], status: :ok
     end
 
     def show
         commentary = Commentary.find(params[:id])
-        render json: commentary, status: :ok
+        render json: serializer(commentary), status: :ok
     rescue StandardError => e
         render json: e, status: :not_found
     end
@@ -40,6 +40,14 @@ class Api::CommentariesController < ApplicationController
     end
 
     private
+
+    def array_serializer(commentaries)
+        Panko::ArraySerializer.new(commentaries, each_serializer: CommentarySerializer).to_json
+    end
+
+    def serializer(commentary)
+        CommentarySerializer.new.serialize_to_json(commentary)
+    end
 
     def commentary_params
         params.require(:commentary).permit(:content, :post_id, :user_id)
