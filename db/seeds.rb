@@ -10,6 +10,10 @@ User.create(id:1, name: "Joao", email: "joao@gmail.com", password: "12345678", i
 User.create(id:2, name: "Maria", email: "maria@gmail.com", password: "12345678", is_admin: true)
 User.create(id:3, name: "Pedro", email: "pedro@gmail.com", password: "12345678", is_admin: true)
 
+User.find_by(name:"Joao").profile_picture.attach(io: File.open('./public/joao.png'), filename:('joao.png'))
+User.find_by(name:"Maria").profile_picture.attach(io: File.open('./public/maria.png'), filename:('maria.png'))
+User.find_by(name:"Pedro").profile_picture.attach(io: File.open('./public/pedro.png'), filename:('pedro.png'))
+
 Post.create(id:1, title: "Tutorial como subir de elo no lol", content: "Desista", user_id: 1)
 Post.create(id:2, title: "Aonde assistir homem aranha online", content: "TV Box", user_id: 2)
 Post.create(id:3, title: "O que e um pontinho azul no ceu", content: "Urublue", user_id: 3)
